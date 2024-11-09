@@ -1,0 +1,10 @@
+/node_modules
+/.vscode
+/.prettierrc
+
+/build
+/dist
+
+.DS_Store
+.env
+.idea
