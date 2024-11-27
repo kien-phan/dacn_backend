@@ -6,15 +6,6 @@ export const userCreateSchema = () => {
         password: Joi.string().min(6).max(16).required(),
         fullname: Joi.string().max(150).required(),
         username: Joi.string().min(1).max(100).required(),
-        // captchaToken: Joi.string().required(),
-    }).unknown(false);
-};
-//
-
-export const adminUpdateUserSchema = () => {
-    return Joi.object({
-        isAdmin: Joi.boolean().optional(),
-        isActive: Joi.boolean().optional(),
     }).unknown(false);
 };
 
@@ -27,9 +18,8 @@ export const userUpdateSchema = () => {
 
 export const userLogginSchema = () => {
     return Joi.object({
-        email: Joi.string().min(6).max(150).required(),
+        mobileNumberOrEmailOrUsername: Joi.string().max(150).required(),
         password: Joi.string().min(6).required(),
-        captchaToken: Joi.string().required(),
     }).unknown(false);
 };
 

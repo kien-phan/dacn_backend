@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { SCHEMANAME } from "../../../core";
+import { min } from "moment-timezone";
 
 const postSchema = new mongoose.Schema(
     {
@@ -34,10 +35,12 @@ const postSchema = new mongoose.Schema(
         likeNum: {
             type: Number,
             default: 0,
+            min: 0,
         },
         commentNum: {
             type: Number,
             default: 0,
+            min: 0,
         },
         isCommentAble: {
             type: Boolean,
@@ -55,5 +58,7 @@ const postSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+postSchema.index({ author: 1, createdAt: -1 });
 
 export default mongoose.model(SCHEMANAME.POST, postSchema);

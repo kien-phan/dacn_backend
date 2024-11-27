@@ -19,11 +19,9 @@ export function isPhoneOrEmail(input: string) {
 }
 
 export function generateAccessToken(
-    user:
-        | (UserDocument & {
-              _id: mongoose.Types.ObjectId;
-          })
-        | UserJwtInterface
+    user: UserDocument & {
+        _id: mongoose.Types.ObjectId;
+    }
 ) {
     // console.log('[generateAccessToken]', user);
     try {
@@ -31,7 +29,8 @@ export function generateAccessToken(
             {
                 id: user.id,
                 email: user.email || null,
-                phone: user.email || null,
+                phone: user.phone || null,
+                username: user.username || null,
             },
             process.env.JWT_KEY as string,
             {
@@ -51,9 +50,10 @@ export function generateRefreshToken(
     try {
         return jwt.sign(
             {
-                id: user._id.toString(),
+                id: user.id,
                 email: user.email || null,
-                phone: user.email || null,
+                phone: user.phone || null,
+                username: user.username || null,
             },
             process.env.JWT_KEY as string,
             {

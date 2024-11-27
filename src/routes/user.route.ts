@@ -1,55 +1,24 @@
 import express from "express";
 const userRoutes = express.Router();
 
-import { authMiddleware, upload } from "../../api/v1/middleware";
-import userController from "../../api/v1/entities/user/user.controller";
+import { authMiddleware } from "../api/middlewares/auth.middleware";
+import userController from "../api/entities/user/user.controller";
 
-//get all user
+// get all user
+userRoutes.get("/getAllUsers", userController.getAllUsers);
+
+// get user by id
 userRoutes.get(
-    "/",
-    authMiddleware.verifyTokenAndAdminAuth,
-    userController.getAllUsers
-);
-
-//update 1 user
-userRoutes.patch(
-    "/update/:id",
+    "/getUserById",
     authMiddleware.verifyToken,
-    authMiddleware.checkOwnAccount,
-    userController.updateUser
+    userController.getUserById
 );
 
-userRoutes.patch(
-    "/adminUpdateUser/:id",
-    authMiddleware.verifyTokenAndAdminAuth,
-    userController.adminUpdateUser
-);
-
-//delete 1 user
-// userRoutes.delete('/delete/:id',  authMiddleware.verifyToken, userController.deleteUser)
-
-userRoutes.post(
-    "/uploadImagePortrait/:id",
-    authMiddleware.verifyToken,
-    authMiddleware.checkOwnAccount,
-    upload.single("image"),
-    userController.uploadImage
-);
-
+//search user
 userRoutes.get(
-    "/toggleActivateUser/:id",
-    authMiddleware.verifyTokenAndAdminAuth,
-    userController.toggleActivateUser
-);
-
-userRoutes.post(
-    "/changePassword/:id",
+    "/searchUser",
     authMiddleware.verifyToken,
-    authMiddleware.checkOwnAccount,
-    userController.changePassword
+    userController.searchUser
 );
-
-//get 1 user by id
-userRoutes.get("/:id", authMiddleware.verifyToken, userController.getOneUser);
 
 export default userRoutes;

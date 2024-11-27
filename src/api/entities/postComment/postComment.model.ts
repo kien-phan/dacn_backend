@@ -3,16 +3,37 @@ import { SCHEMANAME } from "../../../core";
 
 const postCommentSchema = new mongoose.Schema(
     {
-        post: { type: mongoose.Schema.Types.ObjectId, ref: SCHEMANAME.POST },
+        post: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: SCHEMANAME.POST,
+            index: true,
+        },
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: SCHEMANAME.USER,
         },
-        parent: { type: String, maxLength: 100 },
-        content: { type: String, required: true },
-        replyNum: {
+        parent: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: SCHEMANAME.POST_COMMENT,
+            index: true,
+            default: null,
+        },
+        content: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 1,
+            maxlength: 500,
+        },
+        childrenNum: {
             type: Number,
             default: 0,
+            min: 0,
+        },
+        replyTo: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: SCHEMANAME.USER,
+            default: null,
         },
     },
     { timestamps: true }

@@ -107,6 +107,10 @@ const appLimiter = rateLimit({
 });
 app.use(appLimiter);
 
+//routes
+import routes from "./src/routes";
+app.use(routes);
+
 // connect to db
 databases.mongodb.connect();
 

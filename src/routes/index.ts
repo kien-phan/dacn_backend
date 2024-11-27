@@ -4,10 +4,19 @@ const appRoutes = express.Router();
 import createError from "http-errors";
 import { NextFunction, Request, Response } from "express";
 
+// import userRoutes from "./user.route";
+import authRoutes from "./auth.route";
+import relationshipRoutes from "./relationship.route";
+import postRoutes from "./post.route";
 import userRoutes from "./user.route";
+import postCommentRoutes from "./postComment.route";
 
 // appRoutes
+appRoutes.use("/auth", authRoutes);
 appRoutes.use("/user", userRoutes);
+appRoutes.use("/relationship", relationshipRoutes);
+appRoutes.use("/post", postRoutes);
+appRoutes.use("/postComment", postCommentRoutes);
 
 // ping
 appRoutes.get("/ping", (req: Request, res: Response, next: NextFunction) => {

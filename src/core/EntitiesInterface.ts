@@ -15,17 +15,39 @@ export interface UserUpdateInterface {
 }
 
 export interface UserDocument extends Document {
-    fullname: string;
-    username: string;
+    fullname?: string | null;
+    username?: string | null;
     password: string;
-    email: string;
-    phone: string;
-    avatar: string;
-    gender: string;
-    biography: string;
+    email?: string | null;
+    phone?: string | null;
+    avatar?: string | null;
+    biography?: string | null;
     score: number;
     channels: string[];
-
     createdAt?: Date;
     updatedAt?: Date;
+}
+
+// POST
+export interface PostCreateInterface {
+    author: string | mongoose.Types.ObjectId;
+    title: string;
+    location: string;
+    collaborators: string[] | mongoose.Types.ObjectId[];
+    medias: {
+        type: string;
+        source: string;
+    }[];
+    isCommentAble?: Boolean;
+    isShowLike?: Boolean;
+    hashtags: string[];
+}
+
+// COMMENT
+export interface CommentCreateDataInterface {
+    post: string | mongoose.Types.ObjectId;
+    user: string | mongoose.Types.ObjectId;
+    parent?: string | mongoose.Types.ObjectId;
+    content: string;
+    replyTo?: string | mongoose.Types.ObjectId;
 }

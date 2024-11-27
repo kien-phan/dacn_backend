@@ -12,35 +12,25 @@ const userSchema = new mongoose.Schema(
             type: String,
             minLength: 1,
             maxLength: 20,
-            unique: true,
-            required: true,
         },
         password: {
             type: String,
             required: true,
             minLength: 6,
-            maxLength: 16,
         },
         email: {
             type: String,
             minLength: 6,
             maxLength: 150,
-            unique: true,
         },
         phone: {
             type: String,
             minLength: 6,
             maxLength: 150,
-            unique: true,
         },
         avatar: {
             type: String,
             maxLength: 4096,
-        },
-        gender: {
-            type: String,
-            enum: ["male", "female", "unknown"],
-            required: true,
         },
         biography: {
             type: String,
@@ -54,5 +44,7 @@ const userSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+userSchema.index({ fullname: "text", username: "text" });
 
 export default mongoose.model(SCHEMANAME.USER, userSchema);

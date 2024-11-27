@@ -5,7 +5,7 @@ import {
     ref,
     uploadBytes,
 } from "firebase/storage";
-import { FileQuantityType } from "../../../core";
+import { FileQuantityType } from "../../core";
 
 const firebaseImageActions = {
     uploadImageToFirebase: async (
@@ -50,7 +50,7 @@ const firebaseImageActions = {
         }
     },
 
-    deleteImageFromFireBase: async (downloadUrl: string) => {
+    deleteFileFromFireBase: async (downloadUrl: string) => {
         const storageFB = getStorage();
         const fileRef = ref(storageFB, downloadUrl);
         await deleteObject(fileRef);
