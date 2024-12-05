@@ -51,3 +51,17 @@ export interface CommentCreateDataInterface {
     content: string;
     replyTo?: string | mongoose.Types.ObjectId;
 }
+
+export interface MessageCreateInterface {
+    conversation: string | mongoose.Types.ObjectId;
+    sender: string | mongoose.Types.ObjectId;
+    forwardFrom?: string | mongoose.Types.ObjectId;
+    medias?:
+        | {
+              type: string;
+              source: string;
+              fileName: string;
+          }[]
+        | null;
+    content?: string | null;
+}

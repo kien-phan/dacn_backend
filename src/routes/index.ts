@@ -10,6 +10,8 @@ import relationshipRoutes from "./relationship.route";
 import postRoutes from "./post.route";
 import userRoutes from "./user.route";
 import postCommentRoutes from "./postComment.route";
+import conversationRoutes from "./conversation.route";
+import messageRoutes from "./message.route";
 
 // appRoutes
 appRoutes.use("/auth", authRoutes);
@@ -17,6 +19,8 @@ appRoutes.use("/user", userRoutes);
 appRoutes.use("/relationship", relationshipRoutes);
 appRoutes.use("/post", postRoutes);
 appRoutes.use("/postComment", postCommentRoutes);
+appRoutes.use("/conversation", conversationRoutes);
+appRoutes.use("/message", messageRoutes);
 
 // ping
 appRoutes.get("/ping", (req: Request, res: Response, next: NextFunction) => {

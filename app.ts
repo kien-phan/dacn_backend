@@ -121,4 +121,8 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "./src/config/Firebase.config";
 initializeApp(firebaseConfig);
 
+import { socketIoInit } from "./src/socketio/userRoom";
+// init socketio
+socketIoInit(io);
+
 export default server;

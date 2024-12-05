@@ -8,6 +8,8 @@ export const SCHEMANAME = {
     POST_COMMENT: "post_comment",
     CHAT_CHANNEL: "chat_channel",
     CHAT_CONTENT: "chat_content",
+    CONVERSATION: "conversation",
+    MESSAGE: "message",
 };
 
 // MESSAGE
@@ -42,3 +44,10 @@ export const registerLimiter = rateLimit({
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
+
+// SOCKETEVENT
+export const SOCKETEVENTS = {
+    RECEIVEMESSAGE: "RECEIVEMESSAGE",
+    READMESSAGE: "READMESSAGE",
+    DELETEMESSAGE: "DELETEMESSAGE",
+};

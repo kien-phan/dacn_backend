@@ -32,6 +32,13 @@ const postCommentService = {
             $inc: { commentNum: 1 },
         });
 
+        // update post score
+        await postModel.findByIdAndUpdate(
+            data.post,
+            { $inc: { likeNum: 1, score: 2 } }, // Tăng 1
+            { new: true }
+        );
+
         return newComment;
     },
     getParentCmt: async (postId: string, skip = 0) => {

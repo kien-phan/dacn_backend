@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        isOnline: {
+            type: Boolean,
+            default: false,
+        },
         channels: [{ type: String, maxLength: 100 }],
     },
     { timestamps: true }

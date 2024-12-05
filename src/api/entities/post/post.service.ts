@@ -116,6 +116,7 @@ const postService = {
             const post = new postModel(data);
 
             await post.save();
+            await post.populate("author collaborators");
             newPost = post;
         });
         session.endSession();
@@ -146,7 +147,10 @@ const postService = {
                 data.author = new mongoose.Types.ObjectId(data.author);
             }
 
-            newPost = await postModel.findByIdAndUpdate(postId, data);
+            newPost = await postModel
+                .findByIdAndUpdate(postId, data)
+                .populate("author collaborators")
+                .exec();
         });
         session.endSession();
         return newPost;
